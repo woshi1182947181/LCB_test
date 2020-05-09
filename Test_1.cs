@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -7,6 +7,9 @@ public class Test_1 : MonoBehaviour
     private char spaceFlag = ' ';
     private string ReverseStr(string str)
     {
+        if (string.IsNullOrEmpty(str))
+            return string.Empty;
+
         StringBuilder resultStr = new StringBuilder();
         Stack<string> stackStr = new Stack<string>();
         string[] strArray = str.Split(spaceFlag);
@@ -39,6 +42,11 @@ public class Test_1 : MonoBehaviour
             {
                 stackStr.Push(currStr);
             }
+        }
+
+        while (stackStr.Count > 0)
+        {
+            resultStr.Append(stackStr.Pop() + spaceFlag);
         }
         return resultStr.ToString();
     }
